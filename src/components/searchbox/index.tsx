@@ -1,17 +1,19 @@
 import { useState } from "react";
 import "./index.css";
 const Searchbox = () => {
-  const [value, setValue] = useState("");
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const [value, setValue] = useState("lorr");
+  const handleInputChange = (e: {
+    target: HTMLInputElement | HTMLSelectElement;
+  }) => {
     setValue(e.target.value);
   };
   return (
     <div className="search-wrapper">
       <input
-        type="text"
         value={value}
         onChange={handleInputChange}
         className="input"
+        type="text"
         placeholder="Search for photos"
       />
     </div>

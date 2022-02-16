@@ -7,8 +7,13 @@ interface MyData {
 
 type Photo = {
   id?: string;
-  user: {};
-  urls: {};
+  user: {
+    name: string;
+    location: string;
+  };
+  urls: {
+    regular: string;
+  };
   links: {};
   color: string;
 };
@@ -24,7 +29,7 @@ export const fetchPhotos = createAsyncThunk("photos/fetchPhtos", async () => {
 });
 
 interface PhotosState {
-  photos: Array<Photo>;
+  photos: Photo[];
   loading: "idle" | "pending" | "succeeded" | "failed";
 }
 
@@ -46,7 +51,7 @@ const photosSlice = createSlice({
       builder.addCase(fetchPhotos.fulfilled, (state, action) => {
         // Add user to the state array
         state.loading = "succeeded";
-        state.photos.push(action.payload);
+        state.photos = action.payload;
       });
   },
 });
